@@ -33,7 +33,7 @@
   (let ((access-data (map-get? access-permissions { patient-id: patient-id, provider-id: provider-id })))
     (if (is-some access-data)
       (let ((access (unwrap-panic access-data)))
-        (if (and (get authorized access) (< block-height (get expiration access)))
+        (if (and (get authorized access) (< (get-block-height) (get expiration access)))
           (ok true)
           (ok false)))
       (ok false))))
